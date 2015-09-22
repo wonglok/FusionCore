@@ -1,8 +1,6 @@
 (function(Vco){
 	'use strict';
 
-
-
 	Vco.set('mod.main', function(){
 		var api = {};
 

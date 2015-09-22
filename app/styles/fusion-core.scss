@@ -6,9 +6,10 @@ body {
 
 .core-container{
 	width: 100vw;
-	height: 700px;
+	height: 65vh;
+	overflow: hidden;
 
-	perspective: 3000px;
+	perspective: 300vw;
 	// transform-style: preserve-3d;
 
 
@@ -24,27 +25,29 @@ body {
 .core-space {
     width: 0px;
     height: 0px;
-	position: relative;
 
 	transform-style: preserve-3d;
 
-    transform: rotateX(-30deg) translate3d(-196px, 177px, 0px);
+    transform: rotateX(-30deg) translate3d(-18vw, 15vh, 0px);
 
 }
 
 @keyframes rotateCore {
 	0% {
-		transform: rotateY(00deg);
+		transform: rotateY(360deg);
 	}
 	100% {
-		transform: rotateY(360deg);
+		transform: rotateY(0deg);
 	}
 }
 
-.core-container.rotate .core-partition-group{
+
+.core-partition-group{
 	animation: rotateCore 30s linear 0s infinite;
 	transform-style: preserve-3d;
 }
+
+
 
 
 $partitionNumber: 6;
@@ -54,14 +57,13 @@ $partitionNumber: 6;
 		&.#{$partition}-#{$i} {
 			background-attachment: fixed;
 			background-size: cover;
-			background-color: rgba(0.5,0.5,0.5,0.5);
+			background-color: rgba(0.5,0.5,0.5,0.2);
+			// background-image: url('../images/obj-bg/#{$i}.jpg');
 
 			backface-visibility: visible;
+			transform-origin: 0% 50%;
+			transform: rotateY( -60 + $i * 60deg ) translate3d(5.0vw, 0px, 0px);
 
-			transform-origin: 0% 100%;
-			transform: rotateY( $i * 60deg ) translate3d(50px, 0px, 0px) ;
-
-			// background-image: url('../images/obj-bg/#{$i}.jpg');
 		}
 	}
 }
@@ -71,17 +73,15 @@ $partitionNumber: 6;
 	top: 0px;
 	left: 0px;
 
-	width: 200px;
-	height: 400px;
+    min-width: 230px;
+    min-height: 390px;
 
-	// transform-style: preserve-3d;
+    width: 23vw;
+    height: 39vh;
+
 	@include partition-background;
 
 	border-radius: 10px;
-	p {
-		padding: 0px;
-		margin: 20px;
-	}
 
 }
 
