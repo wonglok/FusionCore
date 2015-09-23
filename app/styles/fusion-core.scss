@@ -4,6 +4,11 @@ body {
 	margin: 0px;
 }
 
+//Core
+
+$partitionNumber: 6;
+
+
 .core-container{
 	width: 100vw;
 	height: 65vh;
@@ -11,6 +16,10 @@ body {
 
 	perspective: 300vw;
 	// transform-style: preserve-3d;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
 
 
 	display : flex;
@@ -18,7 +27,11 @@ body {
 	flex-flow: center;
 	justify-content: center;
 
+	background-attachment: fixed;
+	background-size: cover;
 	background-color: rgba(0.5,0.5,0.5,0.1);
+	// background-image: url('../images/obj-bg/30.jpg');
+
 
 }
 
@@ -27,10 +40,9 @@ body {
     height: 0px;
 
 	transform-style: preserve-3d;
-
-    transform: rotateX(-30deg) translate3d(-18vw, 15vh, 0px);
-
+    transform: rotateX(-30deg) translate3d(0vw, 15vh, 0px);
 }
+
 
 @keyframes rotateCore {
 	0% {
@@ -43,18 +55,17 @@ body {
 
 
 .core-partition-group{
-	animation: rotateCore 30s linear 0s infinite;
+	animation: rotateCore 25s linear 0s infinite;
 	transform-style: preserve-3d;
+	transition: all 1.5s;
+	transform: rotateY( 60deg );
+
 }
 
 
-
-
-$partitionNumber: 6;
-@mixin partition-background{
-	$partition: "cp";
+@mixin partition-core{
 	@for $i from 1 through $partitionNumber {
-		&.#{$partition}-#{$i} {
+		&[cp="#{$i}"] {
 			background-attachment: fixed;
 			background-size: cover;
 			background-color: rgba(0.5,0.5,0.5,0.2);
@@ -63,6 +74,7 @@ $partitionNumber: 6;
 			backface-visibility: visible;
 			transform-origin: 0% 50%;
 			transform: rotateY( -60 + $i * 60deg ) translate3d(5.0vw, 0px, 0px);
+			transition: all 1.5s 0s;
 
 		}
 	}
@@ -73,17 +85,17 @@ $partitionNumber: 6;
 	top: 0px;
 	left: 0px;
 
-    min-width: 230px;
-    min-height: 390px;
-
     width: 23vw;
     height: 39vh;
 
-	@include partition-background;
+	@include partition-core;
 
 	border-radius: 10px;
-
 }
+
+
+
+
 
 
 

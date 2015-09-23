@@ -1,4 +1,3 @@
-/*eslint no-underscore-dangle: 2*/
 (function(){
 	'use strict';
 
@@ -6,29 +5,28 @@
 	//<3
 	//vanillla code organizr
 	function vcoFactory(){
-		var core = {
+		var mod = {
 			fac: {},
 			inst: {},
 			//setters
 			val: function(name, val){
-				core.inst[name] = val;
+				mod.inst[name] = val;
 			},
 			set: function(name, factory){
-				core.inst[name] = null;
-				core.fac[name] = factory;
+				mod.inst[name] = null;
+				mod.fac[name] = factory;
 			},
-
 			//getter
 			get: function(name){
-			//	return (console.log('di-get: '+name),core.inst[name]) || (core.inst[name] = core.make(name));
-				return core.inst[name] || (core.inst[name] = core.make(name));
+			//	return (console.log('di-get: '+name),mod.inst[name]) || (mod.inst[name] = mod.make(name));
+				return mod.inst[name] || (mod.inst[name] = mod.make(name));
 			},
 
 			//maker
 			make: function(name){
-				var factory = core.fac[name];
+				var factory = mod.fac[name];
 				if (factory){
-					console.log('coreMake: ' + name);
+					console.log('modMake: ' + name);
 					return factory();
 				}else{
 					throw new Error('Factory Not Found!! ' + name);
@@ -36,8 +34,11 @@
 			}
 		};
 
-		return core;
+		return mod;
 	}
+
+	window.vcoFactory = vcoFactory;
+
 	window.Vco = vcoFactory();
 
 	console.log(window.Vco);
